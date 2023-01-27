@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>869641834843-ugejo57a686vd8gp1i7e93mqfhp1slk1.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.869641834843-ugejo57a686vd8gp1i7e93mqfhp1slk1</string>
+	<key>API_KEY</key>
+	<string>AIzaSyC-uQyyJpRWOA0E8HtrXuT-OluqlCwC26w</string>
+	<key>GCM_SENDER_ID</key>
+	<string>869641834843</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.acaiboca.appAcai</string>
+	<key>PROJECT_ID</key>
+	<string>app-acai-aeebe</string>
+	<key>STORAGE_BUCKET</key>
+	<string>app-acai-aeebe.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:869641834843:ios:362af783c9b105399d4a7e</string>
+</dict>
+</plist>

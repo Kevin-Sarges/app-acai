@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "869641834843",
+    "project_id": "app-acai-aeebe",
+    "storage_bucket": "app-acai-aeebe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:869641834843:android:bfa8cb7fe3a0b3cd9d4a7e",
+        "android_client_info": {
+          "package_name": "com.acaiboca.app_acai"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "869641834843-p7aib9g1pmtrd9nc2qvel84or3k00jce.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCulEWKlAc1NPS9OPDfIxjTNZfZMQfA9kg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "869641834843-p7aib9g1pmtrd9nc2qvel84or3k00jce.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
