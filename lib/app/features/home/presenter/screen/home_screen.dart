@@ -1,4 +1,4 @@
-import 'package:app_acai/app/common/colors_app.dart';
+import 'package:app_acai/app/common/utils/colors_app.dart';
 import 'package:app_acai/app/features/carrinho/presenter/screen/carrinho_screen.dart';
 import 'package:app_acai/app/features/lista_produtos/presenter/screen/produtos_screen.dart';
 import 'package:app_acai/app/features/registro/presenter/screen/registro_screen.dart';

@@ -1,3 +1,4 @@
+import 'package:app_acai/app/features/inject/inject_dependecy.dart';
 import 'package:app_acai/app/my_app.dart';
 import 'package:app_acai/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -11,5 +12,6 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
+  InjectDependency.init();
   runApp(const MyApp());
 }
