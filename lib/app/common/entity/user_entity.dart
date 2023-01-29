@@ -1,8 +1,8 @@
-class LoginEntity {
+class UserEntity {
   String email;
   String password;
 
-  LoginEntity({
+  UserEntity({
     required this.email,
     required this.password,
   });

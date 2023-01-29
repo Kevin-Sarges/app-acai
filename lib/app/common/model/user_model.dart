@@ -1,10 +1,10 @@
-import 'package:app_acai/app/common/entity/login_entity.dart';
+import 'package:app_acai/app/common/entity/user_entity.dart';
 
-class LoginModel extends LoginEntity {
-  LoginModel({required super.email, required super.password});
+class UserModel extends UserEntity {
+  UserModel({required super.email, required super.password});
 
-  factory LoginModel.fromJson(Map<String, dynamic> json) {
-    return LoginModel(
+  factory UserModel.fromJson(Map<String, dynamic> json) {
+    return UserModel(
       email: json['email'] as String,
       password: json['password'] as String,
     );
