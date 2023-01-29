@@ -1,4 +1,4 @@
-import 'package:app_acai/app/common/model/login_model.dart';
+import 'package:app_acai/app/common/model/user_model.dart';
 import 'package:app_acai/app/features/login/domain/datasource/ilogin_datasource.dart';
 import 'package:app_acai/app/common/error/failure.dart';
 import 'package:app_acai/app/features/login/domain/repository/ilogin_repository.dart';
@@ -12,7 +12,7 @@ class LoginRepository implements LoginRepositoryImpl {
 
   @override
   Future<Either<Failure, UserCredential>> signInEmailSenha(
-      LoginModel user) async {
+      UserModel user) async {
     try {
       final result = await dataSource.signInEmailSenha(user);
 

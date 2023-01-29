@@ -1,4 +1,4 @@
-import 'package:app_acai/app/common/model/login_model.dart';
+import 'package:app_acai/app/common/model/user_model.dart';
 import 'package:app_acai/app/features/login/domain/usecases/login_email_senha_usecase.dart';
 import 'package:app_acai/app/features/login/domain/usecases/login_facebook_usecase.dart';
 import 'package:app_acai/app/features/login/domain/usecases/login_google_usecase.dart';
@@ -16,7 +16,7 @@ class LoginCubit extends Cubit<LoginState> {
   final LoginFacebookUseCase loginFacebook;
   final LoginGoogleUseCase loginGoogle;
 
-  Future<void> singInEmailSenha(LoginModel user) async {
+  Future<void> singInEmailSenha(UserModel user) async {
     emit(LoginCarregando());
 
     final result = await loginEmailSenha(user);
