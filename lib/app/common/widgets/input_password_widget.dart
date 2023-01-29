@@ -1,19 +1,23 @@
 import 'package:app_acai/app/common/utils/colors_app.dart';
 import 'package:flutter/material.dart';
 
-class InputFormEmail extends StatelessWidget {
-  const InputFormEmail({
+class InputFormPassword extends StatelessWidget {
+  const InputFormPassword({
     Key? key,
     required this.textController,
     required this.keyboardType,
-    required this.hintText,
+    required this.obscureText,
+    required this.onTap,
+    required this.childIcon,
     required this.label,
   }) : super(key: key);
 
-  final String hintText;
   final String label;
   final TextInputType keyboardType;
   final TextEditingController textController;
+  final bool? obscureText;
+  final VoidCallback onTap;
+  final Widget childIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -27,30 +31,33 @@ class InputFormEmail extends StatelessWidget {
       },
       controller: textController,
       keyboardType: keyboardType,
+      obscureText: obscureText ?? false,
       style: const TextStyle(
-        color: ColorsApp.purplePrimary,
+        color: ColorsApp.purpleSecondary,
       ),
       decoration: InputDecoration(
         filled: true,
         fillColor: ColorsApp.whiteSecondary,
-        enabledBorder: const UnderlineInputBorder(
-          borderSide: BorderSide(
+        enabledBorder: UnderlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: const BorderSide(
             color: ColorsApp.green,
           ),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(5.5),
+          borderRadius: BorderRadius.circular(10),
           borderSide: const BorderSide(
             color: ColorsApp.purplePrimary,
           ),
         ),
         label: Text(label),
-        hintText: hintText,
+        border: const OutlineInputBorder(),
         labelStyle: const TextStyle(
           fontSize: 16,
         ),
-        hintStyle: const TextStyle(
-          color: ColorsApp.purpleSecondary,
+        suffixIcon: InkWell(
+          onTap: onTap,
+          child: childIcon,
         ),
       ),
     );

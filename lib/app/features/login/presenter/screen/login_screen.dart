@@ -1,7 +1,12 @@
 import 'package:app_acai/app/common/utils/colors_app.dart';
-import 'package:app_acai/app/features/login/presenter/widgets/input_email_widget.dart';
-import 'package:app_acai/app/features/login/presenter/widgets/input_password_widget.dart';
+import 'package:app_acai/app/common/utils/routes_app.dart';
+import 'package:app_acai/app/features/login/presenter/controllers/login_cubit.dart';
+import 'package:app_acai/app/features/login/presenter/controllers/login_state.dart';
+import 'package:app_acai/app/features/login/presenter/widgets/login_email_password_widget.dart';
+import 'package:app_acai/app/features/login/presenter/widgets/other_logins_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -11,13 +16,12 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final _formKey = GlobalKey<FormState>();
-  final _textControllerEmail = TextEditingController();
-  final _textControllerPassword = TextEditingController();
-  bool isHiddenText = true;
+  final cubit = GetIt.I.get<LoginCubit>();
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+
     return Scaffold(
       body: Container(
         width: double.infinity,
@@ -32,41 +36,56 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ),
         child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Image.asset(
-                'assets/images/logo.png',
-              ),
-              Form(
-                key: _formKey,
-                child: Column(
+          child: BlocListener<LoginCubit, LoginState>(
+            bloc: cubit,
+            listener: (context, state) {
+              if (state is LoginSucesso) {
+                Navigator.pushNamed(context, RoutesApp.home);
+                return;
+              }
+            },
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  'assets/images/logo.png',
+                ),
+                const LoginEmailSenhaWidget(),
+                SizedBox(height: width * 0.1),
+                const OtherLoginsWidget(),
+                SizedBox(height: width * 0.1),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    InputFormEmail(
-                      textController: _textControllerEmail,
-                      hintText: 'user@email.com',
-                      label: 'Email',
-                      keyboardType: TextInputType.emailAddress,
-                    ),
-                    const SizedBox(height: 15),
-                    InputFormPassword(
-                      label: 'Senha',
-                      obscureText: isHiddenText,
-                      textController: _textControllerPassword,
-                      keyboardType: TextInputType.visiblePassword,
-                      onTap: () {
-                        setState(() {
-                          isHiddenText = !isHiddenText;
-                        });
-                      },
-                      childIcon: Icon(
-                        isHiddenText ? Icons.visibility : Icons.visibility_off,
-                        color: ColorsApp.purpleSecondary,
+                    const Text(
+                      'Contato',
+                      style: TextStyle(
+                        color: ColorsApp.whitePrimary,
                       ),
-                    )
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'assets/images/whatsapp.png',
+                          width: 20,
+                          height: 20,
+                        ),
+                        const SizedBox(width: 5),
+                        const Text(
+                          '4002-8922',
+                          style: TextStyle(
+                            color: ColorsApp.whitePrimary,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

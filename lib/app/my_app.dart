@@ -1,4 +1,5 @@
 import 'package:app_acai/app/common/utils/routes_app.dart';
+import 'package:app_acai/app/features/home/presenter/screen/home_screen.dart';
 import 'package:app_acai/app/features/login/presenter/screen/login_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
       title: 'Açaí do Boca',
       routes: {
         RoutesApp.initialRouter: (context) => const LoginScreen(),
-        RoutesApp.home: (context) => Container(),
+        RoutesApp.home: (context) => const HomeScreen(),
       },
     );
   }
