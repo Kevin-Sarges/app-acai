@@ -10,45 +10,47 @@ class InputFormEmail extends StatelessWidget {
     required this.label,
   }) : super(key: key);
 
-  final Widget label;
   final String hintText;
+  final String label;
   final TextInputType keyboardType;
   final TextEditingController textController;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        color: ColorsApp.whitePrimary,
-      ),
-      child: TextFormField(
-        validator: (value) {
-          if (value == null || value.isEmpty) {
-            return 'Campo esta vazio';
-          }
+    return TextFormField(
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'Campo esta vazio';
+        }
 
-          return null;
-        },
-        controller: textController,
-        keyboardType: keyboardType,
-        style: const TextStyle(
-          color: ColorsApp.whiteSecondary,
+        return null;
+      },
+      controller: textController,
+      keyboardType: keyboardType,
+      style: const TextStyle(
+        color: ColorsApp.purplePrimary,
+      ),
+      decoration: InputDecoration(
+        filled: true,
+        fillColor: ColorsApp.whiteSecondary,
+        enabledBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: ColorsApp.green,
+          ),
         ),
-        decoration: InputDecoration(
-          border: const OutlineInputBorder(
-            borderSide: BorderSide(
-              color: ColorsApp.whitePrimary,
-              style: BorderStyle.solid,
-            ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(5.5),
+          borderSide: const BorderSide(
+            color: ColorsApp.purplePrimary,
           ),
-          label: label,
-          hintText: hintText,
-          labelStyle: const TextStyle(
-            color: ColorsApp.whitePrimary,
-          ),
-          hintStyle: const TextStyle(
-            color: ColorsApp.lightGray,
-          ),
+        ),
+        label: Text(label),
+        hintText: hintText,
+        labelStyle: const TextStyle(
+          fontSize: 16,
+        ),
+        hintStyle: const TextStyle(
+          color: ColorsApp.purpleSecondary,
         ),
       ),
     );

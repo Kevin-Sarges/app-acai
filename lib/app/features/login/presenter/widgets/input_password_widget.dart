@@ -6,13 +6,13 @@ class InputFormPassword extends StatelessWidget {
     Key? key,
     required this.textController,
     required this.keyboardType,
-    required this.label,
     required this.obscureText,
     required this.onTap,
     required this.childIcon,
+    required this.label,
   }) : super(key: key);
 
-  final Widget label;
+  final String label;
   final TextInputType keyboardType;
   final TextEditingController textController;
   final bool? obscureText;
@@ -33,12 +33,26 @@ class InputFormPassword extends StatelessWidget {
       keyboardType: keyboardType,
       obscureText: obscureText ?? false,
       style: const TextStyle(
-        color: ColorsApp.whiteSecondary,
+        color: ColorsApp.purpleSecondary,
       ),
       decoration: InputDecoration(
-        label: label,
+        filled: true,
+        fillColor: ColorsApp.whiteSecondary,
+        enabledBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: ColorsApp.green,
+          ),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(5.5),
+          borderSide: const BorderSide(
+            color: ColorsApp.purplePrimary,
+          ),
+        ),
+        label: Text(label),
+        border: const OutlineInputBorder(),
         labelStyle: const TextStyle(
-          color: ColorsApp.whitePrimary,
+          fontSize: 16,
         ),
         suffixIcon: InkWell(
           onTap: onTap,

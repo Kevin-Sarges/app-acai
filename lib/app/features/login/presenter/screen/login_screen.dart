@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:app_acai/app/common/utils/colors_app.dart';
 import 'package:app_acai/app/features/login/presenter/widgets/input_email_widget.dart';
 import 'package:app_acai/app/features/login/presenter/widgets/input_password_widget.dart';
@@ -45,24 +43,24 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     InputFormEmail(
                       textController: _textControllerEmail,
-                      label: const Text('Email'),
-                      hintText: 'user@gmail.com',
+                      hintText: 'user@email.com',
+                      label: 'Email',
                       keyboardType: TextInputType.emailAddress,
                     ),
+                    const SizedBox(height: 15),
                     InputFormPassword(
+                      label: 'Senha',
                       obscureText: isHiddenText,
                       textController: _textControllerPassword,
-                      label: const Text('Senha'),
                       keyboardType: TextInputType.visiblePassword,
                       onTap: () {
-                        log('Click !!');
                         setState(() {
                           isHiddenText = !isHiddenText;
                         });
                       },
                       childIcon: Icon(
                         isHiddenText ? Icons.visibility : Icons.visibility_off,
-                        color: ColorsApp.whitePrimary,
+                        color: ColorsApp.purpleSecondary,
                       ),
                     )
                   ],
