@@ -1,5 +1,5 @@
 import 'package:app_acai/app/common/error/common_errors.dart';
-import 'package:app_acai/app/features/login/data/model/login_model.dart';
+import 'package:app_acai/app/common/model/login_model.dart';
 import 'package:app_acai/app/features/login/domain/datasource/ilogin_datasource.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';

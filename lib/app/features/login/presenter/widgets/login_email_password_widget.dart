@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:app_acai/app/common/utils/colors_app.dart';
+import 'package:app_acai/app/common/utils/routes_app.dart';
 import 'package:app_acai/app/common/widgets/input_email_widget.dart';
 import 'package:app_acai/app/common/widgets/input_password_widget.dart';
 import 'package:flutter/material.dart';
@@ -53,16 +56,23 @@ class _LoginEmailSenhaWidgetState extends State<LoginEmailSenhaWidget> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                log('Esqueci minha senha');
+              },
               child: const Text(
-                'Esqueci senha',
+                'Esqueci minha senha',
                 style: TextStyle(
                   decoration: TextDecoration.underline,
                 ),
               ),
             ),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(
+                  context,
+                  RoutesApp.cadastro,
+                );
+              },
               child: const Text(
                 'Cadastre-se',
                 style: TextStyle(

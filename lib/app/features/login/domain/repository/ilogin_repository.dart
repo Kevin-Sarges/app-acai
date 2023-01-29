@@ -1,5 +1,5 @@
 import 'package:app_acai/app/common/error/failure.dart';
-import 'package:app_acai/app/features/login/data/model/login_model.dart';
+import 'package:app_acai/app/common/model/login_model.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 

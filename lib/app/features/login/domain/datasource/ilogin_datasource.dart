@@ -1,4 +1,4 @@
-import 'package:app_acai/app/features/login/data/model/login_model.dart';
+import 'package:app_acai/app/common/model/login_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 abstract class LoginDataSourceImpl {
