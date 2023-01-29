@@ -1,4 +1,5 @@
 import 'package:app_acai/app/common/utils/routes_app.dart';
+import 'package:app_acai/app/features/cadastro/presenter/screen/cadastro_screen_screen.dart';
 import 'package:app_acai/app/features/home/presenter/screen/home_screen.dart';
 import 'package:app_acai/app/features/login/presenter/screen/login_screen.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,7 @@ class MyApp extends StatelessWidget {
       routes: {
         RoutesApp.initialRouter: (context) => const LoginScreen(),
         RoutesApp.home: (context) => const HomeScreen(),
+        RoutesApp.cadastro: (context) => const CadastroScreen(),
       },
     );
   }
