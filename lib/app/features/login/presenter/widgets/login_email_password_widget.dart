@@ -7,16 +7,24 @@ import 'package:app_acai/app/common/widgets/input_password_widget.dart';
 import 'package:flutter/material.dart';
 
 class LoginEmailSenhaWidget extends StatefulWidget {
-  const LoginEmailSenhaWidget({Key? key}) : super(key: key);
+  const LoginEmailSenhaWidget({
+    Key? key,
+    required this.onPressed,
+    required this.textControllerEmail,
+    required this.textControllerPassword,
+  }) : super(key: key);
+
+  final VoidCallback onPressed;
+  final TextEditingController textControllerEmail;
+  final TextEditingController textControllerPassword;
 
   @override
   State<LoginEmailSenhaWidget> createState() => _LoginEmailSenhaWidgetState();
 }
 
 class _LoginEmailSenhaWidgetState extends State<LoginEmailSenhaWidget> {
-  final formKey = GlobalKey<FormState>();
-  final textControllerEmail = TextEditingController();
-  final textControllerPassword = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+
   bool isHiddenText = true;
 
   @override
@@ -24,11 +32,11 @@ class _LoginEmailSenhaWidgetState extends State<LoginEmailSenhaWidget> {
     return Column(
       children: [
         Form(
-          key: formKey,
+          key: _formKey,
           child: Column(
             children: [
               InputFormEmail(
-                textController: textControllerEmail,
+                textController: widget.textControllerEmail,
                 hintText: 'user@email.com',
                 label: 'Email',
                 keyboardType: TextInputType.emailAddress,
@@ -37,7 +45,7 @@ class _LoginEmailSenhaWidgetState extends State<LoginEmailSenhaWidget> {
               InputFormPassword(
                 label: 'Senha',
                 obscureText: isHiddenText,
-                textController: textControllerPassword,
+                textController: widget.textControllerPassword,
                 keyboardType: TextInputType.visiblePassword,
                 onTap: () {
                   setState(() {
@@ -86,7 +94,11 @@ class _LoginEmailSenhaWidgetState extends State<LoginEmailSenhaWidget> {
         SizedBox(
           width: double.infinity,
           child: ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              if (_formKey.currentState!.validate()) {
+                widget.onPressed;
+              }
+            },
             style: ElevatedButton.styleFrom(
               backgroundColor: ColorsApp.green,
             ),

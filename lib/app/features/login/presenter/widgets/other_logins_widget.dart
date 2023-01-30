@@ -1,10 +1,15 @@
-import 'dart:developer';
-
 import 'package:app_acai/app/common/utils/colors_app.dart';
 import 'package:flutter/material.dart';
 
 class OtherLoginsWidget extends StatelessWidget {
-  const OtherLoginsWidget({Key? key}) : super(key: key);
+  const OtherLoginsWidget({
+    Key? key,
+    required this.onTapFacebook,
+    required this.onTapGoogle,
+  }) : super(key: key);
+
+  final VoidCallback onTapFacebook;
+  final VoidCallback onTapGoogle;
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +28,7 @@ class OtherLoginsWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             InkWell(
-              onTap: () {
-                log('Facebook');
-              },
+              onTap: onTapFacebook,
               focusColor: ColorsApp.blackPrimary,
               child: Image.asset(
                 'assets/images/facebook.png',
@@ -34,9 +37,7 @@ class OtherLoginsWidget extends StatelessWidget {
               ),
             ),
             InkWell(
-              onTap: () {
-                log('Google');
-              },
+              onTap: onTapGoogle,
               child: Image.asset(
                 'assets/images/google.png',
                 width: 40,

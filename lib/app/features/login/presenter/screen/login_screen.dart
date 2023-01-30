@@ -1,3 +1,4 @@
+import 'package:app_acai/app/common/model/user_model.dart';
 import 'package:app_acai/app/common/utils/colors_app.dart';
 import 'package:app_acai/app/common/utils/routes_app.dart';
 import 'package:app_acai/app/features/login/presenter/controllers/login_cubit.dart';
@@ -17,6 +18,8 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final cubit = GetIt.I.get<LoginCubit>();
+  final _textControllerEmail = TextEditingController();
+  final _textControllerPassword = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -50,9 +53,27 @@ class _LoginScreenState extends State<LoginScreen> {
                 Image.asset(
                   'assets/images/logo.png',
                 ),
-                const LoginEmailSenhaWidget(),
+                LoginEmailSenhaWidget(
+                  textControllerEmail: _textControllerEmail,
+                  textControllerPassword: _textControllerPassword,
+                  onPressed: () {
+                    cubit.singInEmailSenha(
+                      UserModel(
+                        email: _textControllerEmail.text,
+                        password: _textControllerPassword.text,
+                      ),
+                    );
+                  },
+                ),
                 SizedBox(height: width * 0.1),
-                const OtherLoginsWidget(),
+                OtherLoginsWidget(
+                  onTapFacebook: () {
+                    cubit.singInFacebook();
+                  },
+                  onTapGoogle: () {
+                    cubit.singInGoogle();
+                  },
+                ),
                 SizedBox(height: width * 0.1),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,

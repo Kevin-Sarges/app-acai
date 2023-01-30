@@ -28,6 +28,10 @@ class _CadastroScreenState extends State<CadastroScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Cadastro'),
+        backgroundColor: ColorsApp.purplePrimary,
+      ),
       body: BlocListener<CadastroCubit, CadastroState>(
         bloc: cubit,
         listener: (context, state) {
@@ -78,7 +82,7 @@ class _CadastroScreenState extends State<CadastroScreen> {
                   width: double.infinity,
                   height: 45,
                   child: ElevatedButton(
-                    onPressed: () async {
+                    onPressed: () {
                       if (_formKey.currentState!.validate()) {
                         cubit.cadastro(
                           UserModel(
