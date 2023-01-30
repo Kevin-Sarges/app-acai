@@ -28,7 +28,7 @@ class LoginInjectDependency {
       () => LoginGoogleUseCase(repository: getIt()),
     );
 
-    getIt.registerFactory(
+    getIt.registerFactory<LoginCubit>(
       () => LoginCubit(
         loginEmailSenha: getIt(),
         loginFacebook: getIt(),

@@ -5,6 +5,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 abstract class LoginRepositoryImpl {
   Future<Either<Failure, UserCredential>> signInEmailSenha(UserModel user);
-  Future<Either<Failure, UserCredential>> signInGoogle();
+  Future<Either<Failure, Object?>> signInGoogle();
   Future<Either<Failure, UserCredential>> signInFacebook();
 }

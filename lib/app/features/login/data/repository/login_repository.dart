@@ -34,7 +34,7 @@ class LoginRepository implements LoginRepositoryImpl {
   }
 
   @override
-  Future<Either<Failure, UserCredential>> signInGoogle() async {
+  Future<Either<Failure, Object?>> signInGoogle() async {
     try {
       final result = await dataSource.signInGoogle();
 

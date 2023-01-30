@@ -49,7 +49,7 @@ class LoginDataSource implements LoginDataSourceImpl {
   }
 
   @override
-  Future<UserCredential> signInGoogle() async {
+  Future<Object?> signInGoogle() async {
     try {
       final GoogleSignInAccount? googleSignInAccount =
           await googleSignIn.signIn();
@@ -61,8 +61,8 @@ class LoginDataSource implements LoginDataSourceImpl {
         accessToken: googleSignInAuthentication?.accessToken,
       );
 
-      UserCredential? firebaseUser =
-          await firebaseAuth.signInWithCredential(credential);
+      User? firebaseUser =
+          (await firebaseAuth.signInWithCredential(credential)).user;
 
       return firebaseUser;
     } on FirebaseAuthException catch (e) {
