@@ -10,6 +10,8 @@ class ProdutosScreen extends StatefulWidget {
 class _ProdutosScreenState extends State<ProdutosScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      color: Colors.green,
+    );
   }
 }

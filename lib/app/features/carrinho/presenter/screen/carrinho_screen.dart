@@ -10,6 +10,8 @@ class CarrinhoScreen extends StatefulWidget {
 class _CarrinhoScreenState extends State<CarrinhoScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      color: Colors.pink,
+    );
   }
 }
