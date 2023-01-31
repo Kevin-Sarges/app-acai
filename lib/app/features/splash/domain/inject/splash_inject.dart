@@ -21,7 +21,7 @@ class SplashInjectDependency {
     );
 
     getIt.registerFactory<SplashCubit>(
-      () => SplashCubit(userIsLoggerInUseCase: getIt()),
+      () => SplashCubit(dataSource: getIt()),
     );
   }
 }
