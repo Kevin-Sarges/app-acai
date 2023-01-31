@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Açaí do Boca',
       routes: {
+        // RoutesApp.initialRouter: (context) => const SplashScreen(),
         RoutesApp.initialRouter: (context) => const LoginScreen(),
         RoutesApp.home: (context) => const HomeScreen(),
         RoutesApp.cadastro: (context) => const CadastroScreen(),
