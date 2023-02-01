@@ -68,7 +68,6 @@ class _ProdutosScreenState extends State<ProdutosScreen> {
       ),
       body: SafeArea(
         child: Container(
-          // color: ColorsApp.whiteSecondary,
           padding: const EdgeInsets.only(
             top: 15,
             right: 8,
