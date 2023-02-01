@@ -31,6 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: _screens.elementAt(_selectedScreenIndex),
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: ColorsApp.whiteSecondary,
         selectedItemColor: ColorsApp.purplePrimary,
         currentIndex: _selectedScreenIndex,
         onTap: _onScreenTapped,

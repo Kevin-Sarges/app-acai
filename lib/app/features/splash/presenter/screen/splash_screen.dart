@@ -26,11 +26,8 @@ class _SplashScreenState extends State<SplashScreen> {
     final user = await cubit.isLoggerIn();
 
     if (user != null) {
-      print('home');
       Navigator.pushNamed(context, RoutesApp.home);
     } else {
-      print('login');
-
       Navigator.pushNamed(context, RoutesApp.login);
     }
   }
