@@ -17,6 +17,7 @@ class ProdutosScreen extends StatefulWidget {
 
 class _ProdutosScreenState extends State<ProdutosScreen> {
   final cubit = GetIt.I.get<ListaProdutosCubit>();
+  final textController = TextEditingController();
   final user = FirebaseAuth.instance.currentUser!.photoURL;
 
   @override
@@ -33,37 +34,32 @@ class _ProdutosScreenState extends State<ProdutosScreen> {
         automaticallyImplyLeading: false,
         backgroundColor: ColorsApp.whitePrimary,
         toolbarHeight: 70,
-        title: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 5,
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              CircleAvatar(
-                backgroundColor: ColorsApp.blackSecondary,
-                backgroundImage: NetworkImage(
-                  user == null
-                      ? 'https://cdn-icons-png.flaticon.com/512/3177/3177440.png'
-                      : user!.toString(),
-                ),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            CircleAvatar(
+              backgroundColor: ColorsApp.blackSecondary,
+              backgroundImage: NetworkImage(
+                user == null
+                    ? 'https://cdn-icons-png.flaticon.com/512/3177/3177440.png'
+                    : user!.toString(),
               ),
-              IconButton(
-                onPressed: () {
-                  cubit.userSignOut();
+            ),
+            IconButton(
+              onPressed: () {
+                cubit.userSignOut();
 
-                  Navigator.of(context).pushNamedAndRemoveUntil(
-                    RoutesApp.login,
-                    (_) => true,
-                  );
-                },
-                icon: const Icon(
-                  Icons.logout,
-                  color: ColorsApp.blackSecondary,
-                ),
+                Navigator.of(context).pushNamedAndRemoveUntil(
+                  RoutesApp.login,
+                  (_) => true,
+                );
+              },
+              icon: const Icon(
+                Icons.logout,
+                color: ColorsApp.blackSecondary,
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
       body: SafeArea(
@@ -77,7 +73,7 @@ class _ProdutosScreenState extends State<ProdutosScreen> {
           child: BlocBuilder<ListaProdutosCubit, ListaProdutosState>(
             bloc: cubit,
             builder: (context, state) {
-              if (state is ListaProdutosCubit) {
+              if (state is ListaProdutosCarregando) {
                 return const Center(
                   child: CircularProgressIndicator(
                     color: ColorsApp.purplePrimary,
