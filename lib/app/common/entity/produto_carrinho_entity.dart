@@ -1,15 +1,15 @@
-class ProdutoEntity {
+class ProdutoCarrinhoEntity {
   String id;
-  String descricao;
-  String nome;
   String imagem;
+  String nome;
+  int qtd;
   String preco;
 
-  ProdutoEntity({
+  ProdutoCarrinhoEntity({
     required this.id,
-    required this.descricao,
     required this.nome,
     required this.imagem,
+    required this.qtd,
     required this.preco,
   });
 }

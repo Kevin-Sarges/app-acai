@@ -1,7 +1,10 @@
 import 'package:app_acai/app/common/entity/produto_entity.dart';
+import 'package:app_acai/app/common/model/produto_carrinho_model.dart';
 import 'package:app_acai/app/common/utils/colors_app.dart';
 import 'package:app_acai/app/common/widgets/icon_button_widget.dart';
+import 'package:app_acai/app/features/produto/presenter/controller/produto_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 
 class ProdutoScreen extends StatefulWidget {
   const ProdutoScreen({Key? key, required this.produto}) : super(key: key);
@@ -13,6 +16,7 @@ class ProdutoScreen extends StatefulWidget {
 }
 
 class _ProdutoScreenState extends State<ProdutoScreen> {
+  final cubit = GetIt.I.get<ProdutoCubit>();
   int qtd = 0;
 
   @override
@@ -125,7 +129,36 @@ class _ProdutoScreenState extends State<ProdutoScreen> {
                       ],
                     ),
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: qtd <= 0
+                          ? null
+                          : () {
+                              final snackBar = SnackBar(
+                                content: const Text(
+                                    'Produto adicionado ao carrinho !!'),
+                                action: SnackBarAction(
+                                  label: 'desfazer',
+                                  onPressed: () {
+                                    cubit.deleteProdutoCarrinhoUseCase(
+                                      widget.produto.id,
+                                    );
+                                  },
+                                ),
+                              );
+
+                              cubit.addProdutoCarrinho(
+                                ProdutoCarrinhoModel(
+                                  id: widget.produto.id,
+                                  nome: widget.produto.nome,
+                                  imagem: widget.produto.imagem,
+                                  qtd: qtd,
+                                  preco: widget.produto.preco,
+                                ),
+                              );
+
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                snackBar,
+                              );
+                            },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: ColorsApp.green,
                       ),

@@ -2,6 +2,7 @@ import 'package:app_acai/app/common/entity/produto_entity.dart';
 
 class ProdutoModel extends ProdutoEntity {
   ProdutoModel({
+    required super.id,
     required super.descricao,
     required super.nome,
     required super.imagem,
@@ -10,6 +11,7 @@ class ProdutoModel extends ProdutoEntity {
 
   factory ProdutoModel.fromJson(Map<String, dynamic> json) {
     return ProdutoModel(
+      id: json['id'] as String,
       descricao: json['descricao'] as String,
       nome: json['nome'] as String,
       imagem: json['imagem'] as String,

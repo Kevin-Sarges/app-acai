@@ -29,6 +29,7 @@ class ListaProdutosDataSource implements ListaProdutosDataSourceImpl {
         final data = doc.data();
 
         return ProdutoModel(
+          id: doc.id,
           descricao: data['descricao'],
           nome: data['nome'],
           imagem: data['imagem'],
