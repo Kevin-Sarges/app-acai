@@ -1,7 +1,6 @@
-import 'dart:developer';
-
 import 'package:app_acai/app/common/entity/produto_entity.dart';
 import 'package:app_acai/app/common/utils/colors_app.dart';
+import 'package:app_acai/app/features/produto/presenter/screen/produto_screen.dart';
 import 'package:flutter/material.dart';
 
 class ListProductsWidget extends StatelessWidget {
@@ -19,7 +18,14 @@ class ListProductsWidget extends StatelessWidget {
       itemBuilder: (context, index) {
         return InkWell(
           onTap: () {
-            log('tap !!');
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ProdutoScreen(
+                  produto: data[index],
+                ),
+              ),
+            );
           },
           child: Container(
             width: double.infinity,
