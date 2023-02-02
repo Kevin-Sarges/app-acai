@@ -1,4 +1,3 @@
-import 'package:app_acai/app/common/entity/produto_carrinho_entity.dart';
 import 'package:app_acai/app/common/error/common_errors.dart';
 import 'package:app_acai/app/common/helpers/sqflite_helpers.dart';
 import 'package:app_acai/app/common/model/produto_carrinho_model.dart';
@@ -8,9 +7,6 @@ import 'package:sqflite/sqflite.dart';
 
 class ProdutoDataSource implements ProdutoDataSourceImpl {
   late Database db;
-
-  List<ProdutoCarrinhoEntity> produto = [];
-  List<ProdutoCarrinhoEntity> get produtoCarrinho => produto;
 
   @override
   Future<void> addProdutoCarrinho(ProdutoCarrinhoModel product) async {
