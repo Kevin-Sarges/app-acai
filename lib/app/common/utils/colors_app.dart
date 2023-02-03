@@ -1,6 +1,7 @@
 import 'package:flutter/painting.dart';
 
 class ColorsApp {
+  static const red = Color(0xFFFF2B2B);
   static const green = Color(0xFF72BC53);
   static const blackPrimary = Color(0xFF000000);
   static const blackSecondary = Color(0xFF231F20);

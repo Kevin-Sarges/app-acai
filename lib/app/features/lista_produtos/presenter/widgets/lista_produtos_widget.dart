@@ -65,7 +65,7 @@ class ListProductsWidget extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      'R\$ ${data[index].preco}',
+                      'R\$ ${data[index].preco.toStringAsFixed(2)}',
                       style: const TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.bold,

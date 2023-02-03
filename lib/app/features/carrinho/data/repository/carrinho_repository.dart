@@ -42,4 +42,15 @@ class CarrinhoRepository implements CarrinhoRepositoryImpl {
       return Left(e);
     }
   }
+
+  @override
+  Future<Either<Failure, void>> onDeleteProduto(String id) async {
+    try {
+      final result = await dataSource.onDeleteProduto(id);
+
+      return Right(result);
+    } on Failure catch (e) {
+      return Left(e);
+    }
+  }
 }

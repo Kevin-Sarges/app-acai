@@ -33,7 +33,9 @@ class ListaProdutosDataSource implements ListaProdutosDataSourceImpl {
           descricao: data['descricao'],
           nome: data['nome'],
           imagem: data['imagem'],
-          preco: data['preco'],
+          preco: data['preco'] is int
+              ? (data['preco'] as int).toDouble()
+              : data['preco'],
         );
       }).toList();
 

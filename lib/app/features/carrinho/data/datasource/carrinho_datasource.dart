@@ -58,4 +58,19 @@ class CarrinhoDataSource implements CarrinhoDataSourceImpl {
       throw CommonDesconhecidoError(message: e);
     }
   }
+
+  @override
+  Future<void> onDeleteProduto(String id) async {
+    try {
+      db = await SqfliteHelpers.instance.database;
+
+      await db.delete(
+        StringsApp.nomeTabela,
+        where: '${StringsApp.id} = ?',
+        whereArgs: [id],
+      );
+    } on DatabaseException catch (e) {
+      throw CommonDesconhecidoError(message: e);
+    }
+  }
 }

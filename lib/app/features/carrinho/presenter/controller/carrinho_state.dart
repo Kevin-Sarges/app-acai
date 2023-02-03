@@ -7,8 +7,6 @@ class CarrinhoIntial extends CarrinhoState {}
 
 class CarrinhoCarregando extends CarrinhoState {}
 
-class CarrinhoLimpo extends CarrinhoState {}
-
 class CarrinhoSomaProduto extends CarrinhoState {
   double preco;
 

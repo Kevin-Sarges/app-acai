@@ -6,7 +6,7 @@ class SqlTables {
       ${StringsApp.id} TEXT PRIMARY KEY,
       ${StringsApp.imagem} TEXT NOT NULL,
       ${StringsApp.nome} TEXT NOT NULL,
-      ${StringsApp.preco} TEXT NOT NULL,
+      ${StringsApp.preco} REAL NOT NULL,
       ${StringsApp.qtd} INTEGER NOT NULL
     )
   ''';

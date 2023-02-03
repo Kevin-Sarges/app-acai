@@ -15,7 +15,7 @@ class ProdutoCarrinhoModel extends ProdutoCarrinhoEntity {
       nome: json['nome'] as String,
       imagem: json['imagem'] as String,
       qtd: json['qtd'] as int,
-      preco: json['preco'] as String,
+      preco: json['preco'] as double,
     );
   }
 

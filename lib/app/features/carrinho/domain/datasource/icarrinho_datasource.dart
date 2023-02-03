@@ -4,4 +4,5 @@ abstract class CarrinhoDataSourceImpl {
   Future<List<ProdutoCarrinhoEntity>> getProdutoCarrinho();
   Future<double> somaPreco();
   Future<void> limparCarrinho();
+  Future<void> onDeleteProduto(String id);
 }

@@ -15,7 +15,7 @@ class ProdutoModel extends ProdutoEntity {
       descricao: json['descricao'] as String,
       nome: json['nome'] as String,
       imagem: json['imagem'] as String,
-      preco: json['preco'] as String,
+      preco: json['preco'] as double,
     );
   }
 }

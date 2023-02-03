@@ -3,7 +3,7 @@ class ProdutoEntity {
   String descricao;
   String nome;
   String imagem;
-  String preco;
+  double preco;
 
   ProdutoEntity({
     required this.id,
