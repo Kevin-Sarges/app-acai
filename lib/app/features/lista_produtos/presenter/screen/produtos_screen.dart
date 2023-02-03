@@ -33,7 +33,6 @@ class _ProdutosScreenState extends State<ProdutosScreen> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: ColorsApp.whitePrimary,
-        toolbarHeight: 70,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
