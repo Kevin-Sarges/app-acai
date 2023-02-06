@@ -13,6 +13,8 @@ class CarrinhoSomaProduto extends CarrinhoState {
   CarrinhoSomaProduto(this.preco);
 }
 
+class CarrinhoVazio extends CarrinhoState {}
+
 class CarrinhoSucesso extends CarrinhoState {
   List<ProdutoCarrinhoEntity> produto;
 

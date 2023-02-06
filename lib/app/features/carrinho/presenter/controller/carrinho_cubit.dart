@@ -29,14 +29,6 @@ class CarrinhoCubit extends Cubit<CarrinhoState> {
     ));
   }
 
-  Future<void> limparCarrinho() async {
-    emit(CarrinhoCarregando());
-
-    await clearCarrinhoUseCase();
-
-    getProduto();
-  }
-
   Future<void> somaPrecoCarrinho() async {
     emit(CarrinhoCarregando());
 
@@ -49,8 +41,19 @@ class CarrinhoCubit extends Cubit<CarrinhoState> {
   }
 
   Future<void> deleteProduto(String id) async {
+    await excluirProdutoUseCase(id);
+
+    await getProduto();
+  }
+
+  Future<void> limparCarrinho() async {
     emit(CarrinhoCarregando());
 
-    await excluirProdutoUseCase(id);
+    final result = await clearCarrinhoUseCase();
+
+    emit(result.fold(
+      (erro) => CarrinhoErro(erro),
+      (_) => CarrinhoVazio(),
+    ));
   }
 }
