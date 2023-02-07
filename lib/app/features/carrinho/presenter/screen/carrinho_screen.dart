@@ -3,6 +3,7 @@ import 'package:app_acai/app/common/widgets/icon_button_widget.dart';
 import 'package:app_acai/app/features/carrinho/presenter/controller/carrinho_cubit.dart';
 import 'package:app_acai/app/features/carrinho/presenter/controller/carrinho_state.dart';
 import 'package:app_acai/app/features/carrinho/presenter/widgets/carrinho_vazio_widget.dart';
+import 'package:app_acai/app/features/carrinho/presenter/widgets/footer_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -214,11 +215,9 @@ class _CarrinhoScreenState extends State<CarrinhoScreen> {
                       },
                     ),
                   ),
-                  Expanded(
+                  const Expanded(
                     flex: 2,
-                    child: Container(
-                      color: ColorsApp.lightPurple,
-                    ),
+                    child: FooterCardWidget(),
                   ),
                 ],
               );
