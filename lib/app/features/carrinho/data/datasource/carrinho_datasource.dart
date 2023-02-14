@@ -73,4 +73,22 @@ class CarrinhoDataSource implements CarrinhoDataSourceImpl {
       throw CommonDesconhecidoError(message: e);
     }
   }
+
+  @override
+  Future<int> updateQtd(ProdutoCarrinhoModel produto) async {
+    try {
+      db = await SqfliteHelpers.instance.database;
+
+      final update = await db.update(
+        StringsApp.nomeTabela,
+        produto.toJson(),
+        where: '${StringsApp.id} = ?',
+        whereArgs: [produto.id],
+      );
+
+      return update;
+    } on DatabaseException catch (e) {
+      throw CommonDesconhecidoError(message: e);
+    }
+  }
 }

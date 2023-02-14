@@ -2,6 +2,7 @@ import 'package:app_acai/app/features/carrinho/domain/usecase/clear_carrinho_use
 import 'package:app_acai/app/features/carrinho/domain/usecase/excluir_produto_usecase.dart';
 import 'package:app_acai/app/features/carrinho/domain/usecase/get_produto_carrinho_usecase.dart';
 import 'package:app_acai/app/features/carrinho/domain/usecase/soma_preco_usecase.dart';
+import 'package:app_acai/app/features/carrinho/domain/usecase/update_qtd_usecase.dart';
 import 'package:app_acai/app/features/carrinho/presenter/controller/carrinho_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -11,12 +12,14 @@ class CarrinhoCubit extends Cubit<CarrinhoState> {
     required this.excluirProdutoUseCase,
     required this.clearCarrinhoUseCase,
     required this.somaPrecoUseCase,
+    required this.updateQtdUseCase,
   }) : super(CarrinhoIntial());
 
   final GetProdutoCarrinhoUseCase getProdutoCarrinhoUseCase;
   final ExcluirProdutoUseCase excluirProdutoUseCase;
   final ClearCarrinhoUseCase clearCarrinhoUseCase;
   final SomaPrecoUseCase somaPrecoUseCase;
+  final UpdateQtdUseCase updateQtdUseCase;
 
   Future<void> getProduto() async {
     emit(CarrinhoCarregando());

@@ -1,5 +1,6 @@
 import 'package:app_acai/app/common/error/failure.dart';
 import 'package:app_acai/app/common/entity/produto_carrinho_entity.dart';
+import 'package:app_acai/app/common/model/produto_carrinho_model.dart';
 import 'package:app_acai/app/features/carrinho/domain/datasource/icarrinho_datasource.dart';
 import 'package:app_acai/app/features/carrinho/domain/repository/icarrinho_repository.dart';
 import 'package:dartz/dartz.dart';
@@ -47,6 +48,17 @@ class CarrinhoRepository implements CarrinhoRepositoryImpl {
   Future<Either<Failure, void>> onDeleteProduto(String id) async {
     try {
       final result = await dataSource.onDeleteProduto(id);
+
+      return Right(result);
+    } on Failure catch (e) {
+      return Left(e);
+    }
+  }
+
+  @override
+  Future<Either<Failure, int>> updateQtd(ProdutoCarrinhoModel produto) async {
+    try {
+      final result = await dataSource.updateQtd(produto);
 
       return Right(result);
     } on Failure catch (e) {
