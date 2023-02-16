@@ -1,3 +1,4 @@
+import 'package:app_acai/app/common/model/produto_carrinho_model.dart';
 import 'package:app_acai/app/features/carrinho/domain/usecase/clear_carrinho_usecase.dart';
 import 'package:app_acai/app/features/carrinho/domain/usecase/excluir_produto_usecase.dart';
 import 'package:app_acai/app/features/carrinho/domain/usecase/get_produto_carrinho_usecase.dart';
@@ -58,5 +59,11 @@ class CarrinhoCubit extends Cubit<CarrinhoState> {
       (erro) => CarrinhoErro(erro),
       (_) => CarrinhoVazio(),
     ));
+  }
+
+  Future<void> updateQtd(ProdutoCarrinhoModel produto) async {
+    await updateQtdUseCase(produto);
+
+    await getProduto();
   }
 }

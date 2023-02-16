@@ -81,7 +81,7 @@ class CarrinhoDataSource implements CarrinhoDataSourceImpl {
 
       final update = await db.update(
         StringsApp.nomeTabela,
-        produto.toJson(),
+        {StringsApp.qtd: produto.qtd},
         where: '${StringsApp.id} = ?',
         whereArgs: [produto.id],
       );

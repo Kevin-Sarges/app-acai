@@ -1,3 +1,4 @@
+import 'package:app_acai/app/common/model/produto_carrinho_model.dart';
 import 'package:app_acai/app/common/utils/colors_app.dart';
 import 'package:app_acai/app/common/widgets/icon_button_widget.dart';
 import 'package:app_acai/app/features/carrinho/presenter/controller/carrinho_cubit.dart';
@@ -22,7 +23,7 @@ class CarrinhoScreen extends StatefulWidget {
 class _CarrinhoScreenState extends State<CarrinhoScreen> {
   bool isChecked = false;
   CalendarFormat format = CalendarFormat.week;
-  double valorTotalProdutos = 37.90;
+  double valorTotalProdutos = 0.0;
   double taxa = 3.00;
   late double valorTotalCompra = valorTotalProdutos + taxa;
 
@@ -124,6 +125,14 @@ class _CarrinhoScreenState extends State<CarrinhoScreen> {
 
                         final novoPreco = preco * qtd;
 
+                        final model = ProdutoCarrinhoModel(
+                          id: data[index].id,
+                          nome: data[index].nome,
+                          imagem: data[index].imagem,
+                          qtd: data[index].qtd,
+                          preco: data[index].preco,
+                        );
+
                         return Container(
                           padding: const EdgeInsets.only(bottom: 5, top: 12),
                           decoration: const BoxDecoration(
@@ -171,7 +180,20 @@ class _CarrinhoScreenState extends State<CarrinhoScreen> {
                                             ? null
                                             : () {
                                                 setState(() {
-                                                  data[index].qtd--;
+                                                  final menos =
+                                                      data[index].qtd - 1;
+
+                                                  final model =
+                                                      ProdutoCarrinhoModel(
+                                                    id: data[index].id,
+                                                    nome: data[index].nome,
+                                                    imagem: data[index].imagem,
+                                                    qtd: menos,
+                                                    preco: data[index].preco,
+                                                  );
+
+                                                  cubit.updateQtd(model);
+                                                  print(model.toJson());
                                                 });
                                               },
                                       ),
@@ -195,7 +217,19 @@ class _CarrinhoScreenState extends State<CarrinhoScreen> {
                                             ? null
                                             : () {
                                                 setState(() {
-                                                  data[index].qtd++;
+                                                  final mais =
+                                                      data[index].qtd + 1;
+
+                                                  final model =
+                                                      ProdutoCarrinhoModel(
+                                                    id: data[index].id,
+                                                    nome: data[index].nome,
+                                                    imagem: data[index].imagem,
+                                                    qtd: mais,
+                                                    preco: data[index].preco,
+                                                  );
+
+                                                  cubit.updateQtd(model);
                                                 });
                                               },
                                       ),
