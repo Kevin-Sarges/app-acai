@@ -125,14 +125,6 @@ class _CarrinhoScreenState extends State<CarrinhoScreen> {
 
                         final novoPreco = preco * qtd;
 
-                        final model = ProdutoCarrinhoModel(
-                          id: data[index].id,
-                          nome: data[index].nome,
-                          imagem: data[index].imagem,
-                          qtd: data[index].qtd,
-                          preco: data[index].preco,
-                        );
-
                         return Container(
                           padding: const EdgeInsets.only(bottom: 5, top: 12),
                           decoration: const BoxDecoration(
@@ -193,7 +185,6 @@ class _CarrinhoScreenState extends State<CarrinhoScreen> {
                                                   );
 
                                                   cubit.updateQtd(model);
-                                                  print(model.toJson());
                                                 });
                                               },
                                       ),
