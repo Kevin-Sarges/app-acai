@@ -4,14 +4,10 @@ import 'package:app_acai/app/common/widgets/icon_button_widget.dart';
 import 'package:app_acai/app/features/carrinho/presenter/controller/carrinho_cubit.dart';
 import 'package:app_acai/app/features/carrinho/presenter/controller/carrinho_state.dart';
 import 'package:app_acai/app/features/carrinho/presenter/widgets/carrinho_vazio_widget.dart';
+import 'package:app_acai/app/features/carrinho/presenter/widgets/controle_preco_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:table_calendar/table_calendar.dart';
-
-var now = DateTime.now();
-final firstDay = DateTime(now.year, now.month - 1, now.day);
-final lastDay = DateTime(now.year, now.month + 1, now.day);
 
 class CarrinhoScreen extends StatefulWidget {
   const CarrinhoScreen({Key? key}) : super(key: key);
@@ -21,12 +17,6 @@ class CarrinhoScreen extends StatefulWidget {
 }
 
 class _CarrinhoScreenState extends State<CarrinhoScreen> {
-  bool isChecked = false;
-  CalendarFormat format = CalendarFormat.week;
-  double valorTotalProdutos = 0.0;
-  double taxa = 3.00;
-  late double valorTotalCompra = valorTotalProdutos + taxa;
-
   final cubit = GetIt.I.get<CarrinhoCubit>();
 
   @override
@@ -250,92 +240,19 @@ class _CarrinhoScreenState extends State<CarrinhoScreen> {
                       },
                     ),
                   ),
-                  Expanded(
+                  const Expanded(
                     flex: 3,
-                    child: ListView(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      children: [
-                        Row(
-                          children: [
-                            const Text('Valor total dos produtos: '),
-                            Text(
-                              'R\$ ${valorTotalProdutos.toStringAsFixed(2)}',
-                              style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            const Text('Taxa de entrega: '),
-                            Text(
-                              'R\$ ${taxa.toStringAsFixed(2)}',
-                              style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            const Text('Taxa total da compra: '),
-                            Text(
-                              'R\$ ${valorTotalCompra.toStringAsFixed(2)}',
-                              style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            const Text('Agenda entrega: '),
-                            Checkbox(
-                              value: isChecked,
-                              onChanged: (value) {
-                                setState(() {
-                                  isChecked = value!;
-                                });
-                              },
-                            ),
-                          ],
-                        ),
-                        isChecked == true
-                            ? TableCalendar(
-                                firstDay: firstDay,
-                                lastDay: lastDay,
-                                focusedDay: now,
-                                calendarFormat: format,
-                                startingDayOfWeek: StartingDayOfWeek.monday,
-                                headerStyle: const HeaderStyle(
-                                  formatButtonVisible: false,
-                                ),
-                                calendarStyle: const CalendarStyle(
-                                  todayDecoration: BoxDecoration(
-                                    color: ColorsApp.purplePrimary,
-                                    shape: BoxShape.circle,
-                                  ),
-                                ),
-                                selectedDayPredicate: (day) {
-                                  return isSameDay(now, day);
-                                },
-                                onDaySelected: (selectedDay, focusedDay) {
-                                  setState(() {
-                                    now = selectedDay;
-                                    now = focusedDay;
-                                  });
-                                },
-                              )
-                            : Container(),
-                        ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: ColorsApp.purplePrimary,
-                          ),
-                          child: const Text('Finalizar compra'),
-                        ),
-                      ],
+                    child: ControlePrecoWidget(),
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width * 1,
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: ColorsApp.purplePrimary,
+                      ),
+                      child: const Text('Finalizar compra'),
                     ),
                   ),
                 ],

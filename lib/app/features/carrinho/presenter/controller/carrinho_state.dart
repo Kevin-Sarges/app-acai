@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:app_acai/app/common/entity/produto_carrinho_entity.dart';
 import 'package:app_acai/app/common/error/failure.dart';
 
