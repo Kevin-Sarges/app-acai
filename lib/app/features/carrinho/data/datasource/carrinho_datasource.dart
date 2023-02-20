@@ -47,13 +47,14 @@ class CarrinhoDataSource implements CarrinhoDataSourceImpl {
     try {
       db = await SqfliteHelpers.instance.database;
 
-      List<Map<String, dynamic>> total = await db.rawQuery(
-        'SELECT SUM(${StringsApp.preco}) FROM ${StringsApp.nomeTabela}',
+      List<Map<String, dynamic>> soma = await db.rawQuery(
+        'SELECT SUM(${StringsApp.preco} * ${StringsApp.qtd}) FROM ${StringsApp.nomeTabela}',
       );
 
-      double precoTotal = total[0]['SUM(${StringsApp.preco})'] ?? 0.0;
+      double somaTotal =
+          soma[0]['SUM(${StringsApp.preco} * ${StringsApp.qtd})'] ?? 0.0;
 
-      return precoTotal;
+      return somaTotal;
     } on DatabaseException catch (e) {
       throw CommonDesconhecidoError(message: e);
     }

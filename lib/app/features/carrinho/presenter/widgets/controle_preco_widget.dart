@@ -1,7 +1,6 @@
 import 'package:app_acai/app/common/utils/colors_app.dart';
 import 'package:app_acai/app/features/carrinho/presenter/controller/carrinho_cubit.dart';
 import 'package:app_acai/app/features/carrinho/presenter/controller/carrinho_state.dart';
-import 'package:app_acai/app/features/carrinho/presenter/widgets/total_preso_produtos_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -25,7 +24,6 @@ class _ControlePrecoWidgetState extends State<ControlePrecoWidget> {
   CalendarFormat format = CalendarFormat.week;
   double valorTotalProdutos = 0.0;
   double taxa = 3.00;
-  late double valorTotalCompra = valorTotalProdutos + taxa;
 
   final cubit = GetIt.I.get<CarrinhoCubit>();
 
@@ -58,32 +56,40 @@ class _ControlePrecoWidgetState extends State<ControlePrecoWidget> {
         }
 
         if (state is CarrinhoSomaProduto) {
+          final total = state.preco;
+          final valorTotalCompra = taxa + total;
+
           return ListView(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             children: [
               Row(
-                children: const [
-                  Text('Valor total dos produtos: '),
-                  TotalPrecosProdutosWidget(),
-                ],
-              ),
-              Row(
-                children: const [
-                  Text('Taxa de entrega: '),
+                children: [
+                  const Text('Valor total dos produtos: '),
                   Text(
-                    'R\$ 3.00',
-                    style: TextStyle(
+                    'R\$ ${total.toStringAsFixed(2)}',
+                    style: const TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],
               ),
               Row(
-                children: const [
-                  Text('Taxa total da compra: '),
+                children: [
+                  const Text('Taxa de entrega: '),
                   Text(
-                    'R\$ 54.00',
-                    style: TextStyle(
+                    'R\$ $taxa',
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  const Text('Valor total da compra: '),
+                  Text(
+                    'R\$ $valorTotalCompra',
+                    style: const TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
