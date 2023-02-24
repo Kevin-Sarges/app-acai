@@ -158,6 +158,8 @@ class _ProdutoScreenState extends State<ProdutoScreen> {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 snackBar,
                               );
+
+                              qtd = 0;
                             },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: ColorsApp.green,
