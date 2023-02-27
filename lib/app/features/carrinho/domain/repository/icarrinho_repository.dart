@@ -5,7 +5,7 @@ import 'package:dartz/dartz.dart';
 
 abstract class CarrinhoRepositoryImpl {
   Future<Either<Failure, List<ProdutoCarrinhoEntity>>> getProdutoCarrinho();
-  Future<Either<Failure, double>> somaPreco();
+  Future<Either<Failure, Stream<double>>> somaPreco();
   Future<Either<Failure, void>> limparCarrinho();
   Future<Either<Failure, void>> onDeleteProduto(String id);
   Future<Either<Failure, int>> updateQtd(ProdutoCarrinhoModel produto);

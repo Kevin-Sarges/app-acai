@@ -34,9 +34,9 @@ class CarrinhoRepository implements CarrinhoRepositoryImpl {
   }
 
   @override
-  Future<Either<Failure, double>> somaPreco() async {
+  Future<Either<Failure, Stream<double>>> somaPreco() async {
     try {
-      final result = await dataSource.somaPreco();
+      final result = dataSource.somaPreco();
 
       return Right(result);
     } on Failure catch (e) {

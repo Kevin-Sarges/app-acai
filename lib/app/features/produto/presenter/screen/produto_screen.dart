@@ -159,7 +159,9 @@ class _ProdutoScreenState extends State<ProdutoScreen> {
                                 snackBar,
                               );
 
-                              qtd = 0;
+                              setState(() {
+                                qtd = 0;
+                              });
                             },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: ColorsApp.green,

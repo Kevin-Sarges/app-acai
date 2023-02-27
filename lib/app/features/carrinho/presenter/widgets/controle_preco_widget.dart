@@ -56,86 +56,105 @@ class _ControlePrecoWidgetState extends State<ControlePrecoWidget> {
         }
 
         if (state is CarrinhoSomaProduto) {
-          final total = state.preco;
-          final valorTotalCompra = taxa + total;
+          return StreamBuilder<double>(
+            stream: state.preco,
+            builder: (context, snapshot) {
+              final total = snapshot.data ?? 0.0;
+              final valorTotalCompra = taxa + total;
 
-          return ListView(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            children: [
-              Row(
-                children: [
-                  const Text('Valor total dos produtos: '),
-                  Text(
-                    'R\$ ${total.toStringAsFixed(2)}',
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  const Text('Taxa de entrega: '),
-                  Text(
-                    'R\$ $taxa',
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  const Text('Valor total da compra: '),
-                  Text(
-                    'R\$ $valorTotalCompra',
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  const Text('Agenda entrega: '),
-                  Checkbox(
-                    value: isChecked,
-                    onChanged: (value) {
-                      setState(() {
-                        isChecked = value!;
-                      });
-                    },
-                  ),
-                ],
-              ),
-              isChecked == true
-                  ? TableCalendar(
-                      firstDay: firstDay,
-                      lastDay: lastDay,
-                      focusedDay: now,
-                      calendarFormat: format,
-                      startingDayOfWeek: StartingDayOfWeek.monday,
-                      headerStyle: const HeaderStyle(
-                        formatButtonVisible: false,
-                      ),
-                      calendarStyle: const CalendarStyle(
-                        todayDecoration: BoxDecoration(
-                          color: ColorsApp.purplePrimary,
-                          shape: BoxShape.circle,
+              print(valorTotalCompra);
+
+              if (snapshot.hasData) {
+                return ListView(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  children: [
+                    Row(
+                      children: [
+                        const Text('Valor total dos produtos: '),
+                        Text(
+                          'R\$ ${total.toStringAsFixed(2)}',
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
-                      selectedDayPredicate: (day) {
-                        return isSameDay(now, day);
-                      },
-                      onDaySelected: (selectedDay, focusedDay) {
-                        setState(() {
-                          now = selectedDay;
-                          now = focusedDay;
-                        });
-                      },
-                    )
-                  : Container(),
-            ],
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Text('Taxa de entrega: '),
+                        Text(
+                          'R\$ $taxa',
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Text('Valor total da compra: '),
+                        Text(
+                          'R\$ $valorTotalCompra',
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Text('Agenda entrega: '),
+                        Checkbox(
+                          value: isChecked,
+                          onChanged: (value) {
+                            setState(() {
+                              isChecked = value!;
+                            });
+                          },
+                        ),
+                      ],
+                    ),
+                    isChecked == true
+                        ? TableCalendar(
+                            firstDay: firstDay,
+                            lastDay: lastDay,
+                            focusedDay: now,
+                            calendarFormat: format,
+                            startingDayOfWeek: StartingDayOfWeek.monday,
+                            headerStyle: const HeaderStyle(
+                              formatButtonVisible: false,
+                            ),
+                            calendarStyle: const CalendarStyle(
+                              todayDecoration: BoxDecoration(
+                                color: ColorsApp.purplePrimary,
+                                shape: BoxShape.circle,
+                              ),
+                            ),
+                            selectedDayPredicate: (day) {
+                              return isSameDay(now, day);
+                            },
+                            onDaySelected: (selectedDay, focusedDay) {
+                              setState(() {
+                                now = selectedDay;
+                                now = focusedDay;
+                              });
+                            },
+                          )
+                        : Container(),
+                  ],
+                );
+              }
+
+              return const Center(
+                child: SizedBox(
+                  width: 10,
+                  height: 10,
+                  child: CircularProgressIndicator(
+                    color: ColorsApp.purplePrimary,
+                  ),
+                ),
+              );
+            },
           );
         }
 

@@ -43,7 +43,7 @@ class CarrinhoDataSource implements CarrinhoDataSourceImpl {
   }
 
   @override
-  Future<double> somaPreco() async {
+  Stream<double> somaPreco() async* {
     try {
       db = await SqfliteHelpers.instance.database;
 
@@ -54,7 +54,7 @@ class CarrinhoDataSource implements CarrinhoDataSourceImpl {
       double somaTotal =
           soma[0]['SUM(${StringsApp.preco} * ${StringsApp.qtd})'] ?? 0.0;
 
-      return somaTotal;
+      yield somaTotal;
     } on DatabaseException catch (e) {
       throw CommonDesconhecidoError(message: e);
     }

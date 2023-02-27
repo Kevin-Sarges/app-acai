@@ -9,7 +9,7 @@ class CarrinhoIntial extends CarrinhoState {}
 class CarrinhoCarregando extends CarrinhoState {}
 
 class CarrinhoSomaProduto extends CarrinhoState {
-  double preco;
+  Stream<double> preco;
 
   CarrinhoSomaProduto(this.preco);
 }

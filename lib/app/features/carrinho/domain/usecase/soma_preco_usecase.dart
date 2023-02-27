@@ -7,7 +7,7 @@ class SomaPrecoUseCase {
 
   SomaPrecoUseCase({required this.repository});
 
-  Future<Either<Failure, double>> call() async {
+  Future<Either<Failure, Stream<double>>> call() async {
     return await repository.somaPreco();
   }
 }
