@@ -94,7 +94,7 @@ class _ControlePrecoWidgetState extends State<ControlePrecoWidget> {
                       children: [
                         const Text('Valor total da compra: '),
                         Text(
-                          'R\$ $valorTotalCompra',
+                          'R\$ ${valorTotalCompra.toStringAsFixed(2)}',
                           style: const TextStyle(
                             fontWeight: FontWeight.bold,
                           ),
