@@ -62,8 +62,6 @@ class _ControlePrecoWidgetState extends State<ControlePrecoWidget> {
               final total = snapshot.data ?? 0.0;
               final valorTotalCompra = taxa + total;
 
-              print(valorTotalCompra);
-
               if (snapshot.hasData) {
                 return ListView(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
