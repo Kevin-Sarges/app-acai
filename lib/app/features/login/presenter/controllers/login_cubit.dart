@@ -22,7 +22,7 @@ class LoginCubit extends Cubit<LoginState> {
     final result = await loginEmailSenha(user);
 
     emit(result.fold(
-      (_) => LoginFalhou(),
+      (l) => LoginFalhou(l),
       (_) => LoginSucesso(),
     ));
   }
@@ -33,7 +33,7 @@ class LoginCubit extends Cubit<LoginState> {
     final result = await loginGoogle();
 
     emit(result.fold(
-      (_) => LoginFalhou(),
+      (l) => LoginFalhou(l),
       (_) => LoginSucesso(),
     ));
   }
@@ -44,7 +44,7 @@ class LoginCubit extends Cubit<LoginState> {
     final result = await loginFacebook();
 
     emit(result.fold(
-      (_) => LoginFalhou(),
+      (l) => LoginFalhou(l),
       (_) => LoginSucesso(),
     ));
   }
