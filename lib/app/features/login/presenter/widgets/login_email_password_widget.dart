@@ -30,123 +30,113 @@ class _LoginEmailSenhaWidgetState extends State<LoginEmailSenhaWidget> {
   bool isHiddenText = true;
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return BlocConsumer<LoginCubit, LoginState>(
+    return BlocListener<LoginCubit, LoginState>(
       bloc: cubit,
       listener: (context, state) {
+        if (state is LoginFalhou) {
+          final snackBar = SnackBar(
+            content: Text(state.text.errorMessage),
+          );
+
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          return;
+        }
+
         if (state is LoginSucesso) {
           Navigator.pushNamed(context, RoutesApp.home);
           return;
         }
       },
-      builder: (context, state) {
-        if (state is LoginCarregando) {
-          return const Center(
-            child: CircularProgressIndicator(
-              color: ColorsApp.purplePrimary,
+      child: Column(
+        children: [
+          Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                InputFormEmail(
+                  textController: _textControllerEmail,
+                  hintText: 'user@email.com',
+                  label: 'Email',
+                  keyboardType: TextInputType.emailAddress,
+                ),
+                const SizedBox(height: 15),
+                InputFormPassword(
+                  label: 'Senha',
+                  obscureText: isHiddenText,
+                  textController: _textControllerPassword,
+                  keyboardType: TextInputType.visiblePassword,
+                  onTap: () {
+                    setState(() {
+                      isHiddenText = !isHiddenText;
+                    });
+                  },
+                  childIcon: Icon(
+                    isHiddenText ? Icons.visibility : Icons.visibility_off,
+                    color: ColorsApp.purpleSecondary,
+                  ),
+                )
+              ],
             ),
-          );
-        }
-
-        if (state is LoginFalhou) {
-          return Column(
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Form(
-                key: _formKey,
-                child: Column(
-                  children: [
-                    InputFormEmail(
-                      textController: _textControllerEmail,
-                      hintText: 'user@email.com',
-                      label: 'Email',
-                      keyboardType: TextInputType.emailAddress,
-                    ),
-                    const SizedBox(height: 15),
-                    InputFormPassword(
-                      label: 'Senha',
-                      obscureText: isHiddenText,
-                      textController: _textControllerPassword,
-                      keyboardType: TextInputType.visiblePassword,
-                      onTap: () {
-                        setState(() {
-                          isHiddenText = !isHiddenText;
-                        });
-                      },
-                      childIcon: Icon(
-                        isHiddenText ? Icons.visibility : Icons.visibility_off,
-                        color: ColorsApp.purpleSecondary,
-                      ),
-                    )
-                  ],
+              TextButton(
+                onPressed: () {
+                  log('Esqueci minha senha');
+                },
+                child: const Text(
+                  'Esqueci minha senha',
+                  style: TextStyle(
+                    decoration: TextDecoration.underline,
+                  ),
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  TextButton(
-                    onPressed: () {
-                      log('Esqueci minha senha');
-                    },
-                    child: const Text(
-                      'Esqueci minha senha',
-                      style: TextStyle(
-                        decoration: TextDecoration.underline,
-                      ),
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pushNamed(
-                        context,
-                        RoutesApp.cadastro,
-                      );
-                    },
-                    child: const Text(
-                      'Cadastre-se',
-                      style: TextStyle(
-                        decoration: TextDecoration.underline,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 5),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      cubit.singInEmailSenha(
-                        UserModel(
-                          email: _textControllerEmail.text,
-                          password: _textControllerPassword.text,
-                        ),
-                      );
-                    }
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: ColorsApp.green,
-                  ),
-                  child: const Text(
-                    'LOGIN',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                    ),
+              TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(
+                    context,
+                    RoutesApp.cadastro,
+                  );
+                },
+                child: const Text(
+                  'Cadastre-se',
+                  style: TextStyle(
+                    decoration: TextDecoration.underline,
                   ),
                 ),
               ),
             ],
-          );
-        }
-
-        return Container();
-      },
+          ),
+          const SizedBox(height: 5),
+          SizedBox(
+            width: double.infinity,
+            child: ElevatedButton(
+              onPressed: () {
+                if (_formKey.currentState!.validate()) {
+                  cubit.singInEmailSenha(
+                    UserModel(
+                      email: _textControllerEmail.text,
+                      password: _textControllerPassword.text,
+                    ),
+                  );
+                }
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: ColorsApp.green,
+              ),
+              child: const Text(
+                'LOGIN',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

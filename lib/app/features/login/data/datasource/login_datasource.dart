@@ -21,9 +21,13 @@ class LoginDataSource implements LoginDataSourceImpl {
       return credential;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        print('Nenhum usuário encontrado para esse e-mail.');
+        throw CommonDesconhecidoError(
+          message: 'Nenhum usuário encontrado para esse e-mail.',
+        );
       } else if (e.code == 'wrong-password') {
-        print('Senha incorreta fornecida para esse usuário.');
+        throw CommonDesconhecidoError(
+          message: 'Senha incorreta !!',
+        );
       }
 
       throw CommonDesconhecidoError(message: e.message);
